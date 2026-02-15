@@ -1,9 +1,7 @@
 const { pool } = require('../config/database');
 
 const query = async (text, params) => {
-  // const start = Date.now();
   const result = await pool.query(text, params);
-  // const duration = Date.now() - start;
   return result;
 };
 
