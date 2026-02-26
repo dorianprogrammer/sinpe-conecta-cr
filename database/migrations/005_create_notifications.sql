@@ -2,7 +2,7 @@ CREATE TABLE notifications (
   id SERIAL PRIMARY KEY,
   business_id INTEGER NOT NULL REFERENCES businesses(id) ON DELETE CASCADE,
   payment_id INTEGER REFERENCES payments(id) ON DELETE CASCADE,
-  notification_type VARCHAR(50) NOT NULL CHECK (notification_type IN ('duplicate_payment', 'amount_mismatch', 'new_customer', 'overdue_payment')),
+  notification_type VARCHAR(50) NOT NULL CHECK (notification_type IN ('duplicate_payment', 'amount_mismatch', 'new_customer', 'overdue_payment', 'payment_received')),
   message TEXT NOT NULL,
   is_read BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP DEFAULT NOW()
