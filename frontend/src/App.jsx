@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import LoginPage from "./pages/LoginPage";
+import BusinessSelectorPage from "./pages/BusinessSelectorPage";
+import AdminPage from "./pages/AdminPage";
+import NewBusinessPage from "./pages/NewBusinessPage";
+import DashboardPage from "./pages/DashboardPage";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
@@ -20,21 +24,11 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-
-          {/* Regular user routes (Phase 5) */}
-          {/* <Route path="/businesses" element={<ProtectedRoute allowedRoles={["user"]}><BusinessSelectorPage /></ProtectedRoute>} /> */}
-
-          {/* Superuser / readonly_admin routes (Phase 5) */}
-          {/* <Route path="/admin" element={<ProtectedRoute allowedRoles={["superuser", "readonly_admin"]}><AdminPage /></ProtectedRoute>} /> */}
-
+          <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+          <Route path="/businesses" element={<ProtectedRoute allowedRoles={["user"]}><BusinessSelectorPage /></ProtectedRoute>} />
+          <Route path="/dashboard/:businessId" element={<ProtectedRoute allowedRoles={["user"]}><DashboardPage /></ProtectedRoute>} />
+          <Route path="/businesses/new" element={<ProtectedRoute allowedRoles={["user"]}><NewBusinessPage /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute allowedRoles={["superuser", "readonly_admin"]}><AdminPage /></ProtectedRoute>} />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
