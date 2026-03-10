@@ -5,6 +5,7 @@ import BusinessSelectorPage from "./pages/BusinessSelectorPage";
 import AdminPage from "./pages/AdminPage";
 import NewBusinessPage from "./pages/NewBusinessPage";
 import DashboardPage from "./pages/DashboardPage";
+import EditCustomerPage from "./pages/EditCustomerPage";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/dashboard/:businessId" element={<ProtectedRoute allowedRoles={["user"]}><DashboardPage /></ProtectedRoute>} />
           <Route path="/businesses/new" element={<ProtectedRoute allowedRoles={["user"]}><NewBusinessPage /></ProtectedRoute>} />
           <Route path="/admin" element={<ProtectedRoute allowedRoles={["superuser", "readonly_admin"]}><AdminPage /></ProtectedRoute>} />
+          <Route path="/customers/:customerId/edit" element={<ProtectedRoute allowedRoles={["user"]}><EditCustomerPage /></ProtectedRoute>} />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>

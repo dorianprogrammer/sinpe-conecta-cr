@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../api/axios";
+import CustomersList from "../components/CustomersList";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -287,9 +288,7 @@ const DashboardPage = () => {
           )}
 
           {/* Customers tab placeholder */}
-          {!loading && activeTab === "customers" && (
-            <p className="text-sm text-slate-500">Módulo de clientes — próximamente.</p>
-          )}
+          {!loading && activeTab === "customers" && <CustomersList businessId={businessId} />}
         </main>
       </div>
 

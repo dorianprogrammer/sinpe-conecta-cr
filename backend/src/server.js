@@ -9,6 +9,7 @@ const customerRoutes = require("./routes/customers");
 const paymentRoutes = require("./routes/payments");
 const notificationRoutes = require("./routes/notifications");
 const webhookRoutes = require("./routes/webhook");
+const adminRoutes = require("./routes/admin");
 const { initScheduledJobs } = require("./services/scheduledJobs");
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/api/businesses", businessRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/admin", adminRoutes);
 app.use("/api/webhook/whatsapp", webhookRoutes);
 
 if (process.env.NODE_ENV === "development") {
